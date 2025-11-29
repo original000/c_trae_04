@@ -1,0 +1,5 @@
+d  
+encrypted.txt  
+decrypted.txt  
+3  
+mypassword  
