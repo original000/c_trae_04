@@ -1,0 +1,60 @@
+# VS Code configuration directory
+.vscode/
+
+# Executable files
+*.exe
+*.out
+*.app
+
+# Object files
+*.o
+*.obj
+
+# Dependency files
+*.d
+*.dylib
+*.so
+*.dll
+
+# Compiled libraries
+*.a
+*.lib
+
+# Build directories
+build/
+out/
+Debug/
+Release/
+
+# IDE files
+*.sublime-project
+*.sublime-workspace
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
