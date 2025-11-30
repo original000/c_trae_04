@@ -1,0 +1,17 @@
+{
+  "server": {
+    "port": 8080,
+    "timeout": 30.0,
+    "name": "DefaultServer",
+    "enabled": true,
+    "ports": [80, 443],
+    "hosts": ["localhost"]
+  },
+  "database": {
+    "host": "localhost",
+    "port": 3306,
+    "username": "root",
+    "password": "password",
+    "database": "default_db"
+  }
+}
