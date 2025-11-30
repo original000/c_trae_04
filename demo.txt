@@ -1,0 +1,113 @@
+=== MiniRedis Demo Commands ===
+
+This file contains demo commands that can be tested with the MiniRedis HTTP server.
+
+To test these commands, use curl or a web browser to send GET requests to the /cmd endpoint.
+
+Example using curl:
+  curl "http://localhost:8080/cmd?cmd=SET%20name%20John"
+
+
+=== String Commands ===
+
+1. SET key value
+   Example: SET name John
+   curl "http://localhost:8080/cmd?cmd=SET%20name%20John"
+
+2. SET key value EX seconds (with expiration)
+   Example: SET temp 100 EX 60
+   curl "http://localhost:8080/cmd?cmd=SET%20temp%20100%20EX%2060"
+
+3. GET key
+   Example: GET name
+   curl "http://localhost:8080/cmd?cmd=GET%20name"
+
+4. DEL key
+   Example: DEL temp
+   curl "http://localhost:8080/cmd?cmd=DEL%20temp"
+
+
+=== Hash Commands ===
+
+1. HSET hash field value
+   Example: HSET user:1 name John
+   curl "http://localhost:8080/cmd?cmd=HSET%20user:1%20name%20John"
+
+   Example: HSET user:1 age 30
+   curl "http://localhost:8080/cmd?cmd=HSET%20user:1%20age%2030"
+
+2. HGET hash field
+   Example: HGET user:1 name
+   curl "http://localhost:8080/cmd?cmd=HGET%20user:1%20name"
+
+   Example: HGET user:1 age
+   curl "http://localhost:8080/cmd?cmd=HGET%20user:1%20age"
+
+
+=== List Commands ===
+
+1. LPUSH list value
+   Example: LPUSH numbers 1
+   curl "http://localhost:8080/cmd?cmd=LPUSH%20numbers%201"
+
+   Example: LPUSH numbers 2
+   curl "http://localhost:8080/cmd?cmd=LPUSH%20numbers%202"
+
+   Example: LPUSH numbers 3
+   curl "http://localhost:8080/cmd?cmd=LPUSH%20numbers%203"
+
+2. LRANGE list start end
+   Example: LRANGE numbers 0 -1 (get all elements)
+   curl "http://localhost:8080/cmd?cmd=LRANGE%20numbers%200%20-1"
+
+   Example: LRANGE numbers 0 1 (get first 2 elements)
+   curl "http://localhost:8080/cmd?cmd=LRANGE%20numbers%200%201"
+
+
+=== Test Sequence ===
+
+Here's a sequence of commands to test the basic functionality:
+
+1. SET name John
+   curl "http://localhost:8080/cmd?cmd=SET%20name%20John"
+
+2. GET name
+   curl "http://localhost:8080/cmd?cmd=GET%20name"
+   Expected output: John
+
+3. HSET user:1 name John
+   curl "http://localhost:8080/cmd?cmd=HSET%20user:1%20name%20John"
+
+4. HSET user:1 age 30
+   curl "http://localhost:8080/cmd?cmd=HSET%20user:1%20age%2030"
+
+5. HGET user:1 name
+   curl "http://localhost:8080/cmd?cmd=HGET%20user:1%20name"
+   Expected output: John
+
+6. HGET user:1 age
+   curl "http://localhost:8080/cmd?cmd=HGET%20user:1%20age"
+   Expected output: 30
+
+7. LPUSH numbers 1
+   curl "http://localhost:8080/cmd?cmd=LPUSH%20numbers%201"
+
+8. LPUSH numbers 2
+   curl "http://localhost:8080/cmd?cmd=LPUSH%20numbers%202"
+
+9. LPUSH numbers 3
+   curl "http://localhost:8080/cmd?cmd=LPUSH%20numbers%203"
+
+10. LRANGE numbers 0 -1
+    curl "http://localhost:8080/cmd?cmd=LRANGE%20numbers%200%20-1"
+    Expected output:
+    [0]"3"
+    [1]"2"
+    [2]"1"
+
+11. DEL name
+    curl "http://localhost:8080/cmd?cmd=DEL%20name"
+
+12. GET name
+    curl "http://localhost:8080/cmd?cmd=GET%20name"
+    Expected output: (nil)
