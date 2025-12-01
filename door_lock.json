@@ -1,0 +1,71 @@
+{
+  "root": {
+    "id": "DoorLock",
+    "initial": "Locked",
+    "children": [
+      {
+        "id": "Locked",
+        "entry": "playLockedSound",
+        "exit": "stopLockedSound",
+        "transitions": [
+          {
+            "event": "PIN_ENTERED",
+            "target": "Unlocked",
+            "guard": "isPinCorrect",
+            "action": "logPinSuccess"
+          },
+          {
+            "event": "PIN_ENTERED",
+            "target": "Locked",
+            "guard": "isPinIncorrect",
+            "action": "logPinFailure"
+          },
+          {
+            "event": "EMERGENCY",
+            "target": "Unlocked",
+            "action": "logEmergencyUnlock"
+          }
+        ]
+      },
+      {
+        "id": "Unlocked",
+        "entry": "playUnlockedSound",
+        "exit": "stopUnlockedSound",
+        "transitions": [
+          {
+            "event": "DOOR_CLOSED",
+            "target": "Locked",
+            "action": "logAutoLock"
+          },
+          {
+            "event": "LOCK_BUTTON_PRESSED",
+            "target": "Locked",
+            "action": "logManualLock"
+          },
+          {
+            "event": "DOOR_OPENED",
+            "target": "DoorOpen",
+            "action": "logDoorOpened"
+          }
+        ]
+      },
+      {
+        "id": "DoorOpen",
+        "entry": "playDoorOpenSound",
+        "exit": "stopDoorOpenSound",
+        "transitions": [
+          {
+            "event": "DOOR_CLOSED",
+            "target": "Unlocked",
+            "action": "logDoorClosed"
+          },
+          {
+            "event": "TIMEOUT",
+            "target": "Unlocked",
+            "action": "logDoorTimeout"
+          }
+        ]
+      }
+    ]
+  }
+}
